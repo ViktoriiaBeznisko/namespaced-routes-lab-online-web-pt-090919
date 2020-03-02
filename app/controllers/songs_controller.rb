@@ -11,6 +11,13 @@ class SongsController < ApplicationController
     else
       @songs = Song.all
     end
+        if @preference
+      if @preference.song_sort_order = "ASC"
+        @songs.sort_by!{|song| song.title}
+      else
+        @songs.sort_by!{|song| song.title}.reverse
+      end
+    end
   end
 
   def show
